@@ -1,96 +1,104 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 
+const navStyle = {
+  background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+  boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+  padding: '0 1.5rem',
+  minHeight: '65px',
+  display: 'flex',
+  alignItems: 'center',
+  position: 'sticky',
+  top: 0,
+  zIndex: 1000,
+};
+
+const brandStyle = {
+  fontSize: '1.7rem',
+  fontWeight: '800',
+  background: 'linear-gradient(90deg, #f7971e, #ffd200)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  letterSpacing: '1px',
+  textDecoration: 'none',
+};
+
+const linkStyle = {
+  color: 'rgba(255,255,255,0.85)',
+  fontWeight: '500',
+  fontSize: '0.95rem',
+  padding: '0.4rem 0.9rem',
+  borderRadius: '8px',
+  textDecoration: 'none',
+  transition: 'all 0.2s ease',
+  letterSpacing: '0.3px',
+};
+
+const activeLinkStyle = {
+  ...linkStyle,
+  color: '#ffd200',
+  background: 'rgba(255,210,0,0.12)',
+};
+
+const logoutBtnStyle = {
+  background: 'linear-gradient(135deg, #f7971e, #ffd200)',
+  border: 'none',
+  color: '#1a1a2e',
+  fontWeight: '700',
+  fontSize: '0.88rem',
+  padding: '0.4rem 1.1rem',
+  borderRadius: '20px',
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+  letterSpacing: '0.3px',
+};
+
 export default function Navbar() {
-    const token = localStorage.getItem("jwtToken");
-    // console.log("navbar:", token);
-    const roles = localStorage.getItem("roles");
-    // string 'ROLE_ADMIN,ROLE_USER]'
+  const token = localStorage.getItem("jwtToken");
+  const roles = localStorage.getItem("roles");
 
-    function doLogout() {
-        localStorage.clear();
-        window.location.href = "/";
-    }
+  function doLogout() {
+    localStorage.clear();
+    window.location.href = "/";
+  }
 
-    return (
-        <div>
-            <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-                <div className="container-fluid">
-                    <a className="navbar-brand" href="#">ClickNCart</a>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <NavLink className="nav-link " aria-current="page" to={"/"}>Home</NavLink>
-                            </li>
-                            {
-                                !token &&
-                                <>
-                                    <li className="nav-item">
-                                        <NavLink className="nav-link" to={"/login"}>Login</NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink className="nav-link" to={"/register"}>Register</NavLink>
-                                    </li>
-                                </>
-                            }
-                            {
-                               roles && roles.includes("USER") &&
-                                <>
-                                    <li className="nav-item">
-                                        <NavLink className="nav-link " aria-current="page" to={"/mycart"}>My Cart</NavLink>
-                                    </li>
-                                    <li className="nav-item">
-                                        <NavLink className="nav-link " aria-current="page"
-                                        to={'/myorders'}>My Orders</NavLink>
-                                    </li>
-                                </>
-                            }
-                            {
-                                roles && roles.includes("ADMIN") &&
-                                <>
-                                    <li className="nav-item">
-                                        <NavLink className="nav-link " aria-current="page" to={'/add-product'}>Add Product</NavLink>
-                                    </li>
-                                    {/* <li className="nav-item">
-                                        <NavLink className="nav-link " aria-current="page">Users</NavLink>
-                                    </li> */}
-                                </>
-                            }
-                            {
-                                token &&
-                                <>
-                                
-                                    <li className="nav-item">
-                                        <button className="nav-link" 
-                                        onClick={doLogout}>Logout</button>
-                                    </li>
-                                </>
-                            }
-                            {/* <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Action</a></li>
-                                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                                    <li><hr className="dropdown-divider" /></li>
-                                    <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link disabled" aria-disabled="true">Disabled</a>
-                            </li> */}
-                        </ul>
-                        {/* <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form> */}
-                    </div>
-                </div>
-            </nav>
+  return (
+    <div style={navStyle}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', flexWrap: 'wrap', gap: '0.5rem' }}>
+        {/* Brand */}
+        <a href="/" style={brandStyle}>🛒 ClickNCart</a>
+
+        {/* Nav Links */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', flexWrap: 'wrap' }}>
+          <NavLink to="/" style={({ isActive }) => isActive ? activeLinkStyle : linkStyle}>Home</NavLink>
+
+          {!token && (
+            <>
+              <NavLink to="/login" style={({ isActive }) => isActive ? activeLinkStyle : linkStyle}>Login</NavLink>
+              <NavLink to="/register" style={({ isActive }) => isActive ? activeLinkStyle : linkStyle}>Register</NavLink>
+            </>
+          )}
+
+          {roles && roles.includes("USER") && (
+            <>
+              <NavLink to="/mycart" style={({ isActive }) => isActive ? activeLinkStyle : linkStyle}>🛍️ My Cart</NavLink>
+              <NavLink to="/myorders" style={({ isActive }) => isActive ? activeLinkStyle : linkStyle}>📦 My Orders</NavLink>
+            </>
+          )}
+
+          {roles && roles.includes("ADMIN") && (
+            <NavLink to="/add-product" style={({ isActive }) => isActive ? activeLinkStyle : linkStyle}>➕ Add Product</NavLink>
+          )}
+
+          {token && (
+            <button style={logoutBtnStyle} onClick={doLogout}
+              onMouseOver={e => e.target.style.opacity = '0.85'}
+              onMouseOut={e => e.target.style.opacity = '1'}>
+              Logout
+            </button>
+          )}
         </div>
-    )
+      </div>
+    </div>
+  );
 }
