@@ -1,13 +1,9 @@
 # 🛒 ClickNCart — Full Stack E-Commerce Application
 
-![Java](<img width="1360" height="688" alt="image" src="https://github.com/user-attachments/assets/2fc3596d-912a-427b-a677-b3d3efdc5d8a" />
-)
-![Spring Boot](<img width="1366" height="591" alt="image" src="https://github.com/user-attachments/assets/56bf85f5-8dae-43a9-9474-b518f83208f5" />
-)
-![React](<img width="1297" height="650" alt="image" src="https://github.com/user-attachments/assets/ea642e53-b00a-4f57-8070-5e6def7d61cc" />
-)
-![MySQL](<img width="1225" height="490" alt="image" src="https://github.com/user-attachments/assets/217286dd-177e-42c5-900b-2339545b0be3" />
-)
+(<img width="1360" height="688" alt="image" src="https://github.com/user-attachments/assets/2fc3596d-912a-427b-a677-b3d3efdc5d8a" />)
+(<img width="1366" height="591" alt="image" src="https://github.com/user-attachments/assets/56bf85f5-8dae-43a9-9474-b518f83208f5" />)
+(<img width="1297" height="650" alt="image" src="https://github.com/user-attachments/assets/ea642e53-b00a-4f57-8070-5e6def7d61cc" />)
+(<img width="1225" height="490" alt="image" src="https://github.com/user-attachments/assets/217286dd-177e-42c5-900b-2339545b0be3" />)
 
 A full-stack e-commerce web application built with **React**, **Spring Boot**, and **MySQL**, deployed on **AWS EC2** with **Amazon RDS** as the managed cloud database.
 
