@@ -5,7 +5,7 @@
 (<img width="1297" height="650" alt="image" src="https://github.com/user-attachments/assets/ea642e53-b00a-4f57-8070-5e6def7d61cc" />)
 (<img width="1225" height="490" alt="image" src="https://github.com/user-attachments/assets/217286dd-177e-42c5-900b-2339545b0be3" />)
 
-A full-stack e-commerce web application built with **React**, **Spring Boot**, and **MySQL**, deployed on **AWS EC2** with **Amazon RDS** as the managed cloud database.
+A full-stack e-commerce web application built with **React**, **Spring Boot**, and **MySQL**, deployed on **AWS EC2** with **MySQL Container** as the managed cloud database.
 
 ---
 
@@ -21,7 +21,7 @@ A full-stack e-commerce web application built with **React**, **Spring Boot**, a
 | Layer      | Technology                        |
 |------------|-----------------------------------|
 | Frontend   | React.js, Node.js 18, npm         |
-| Backend    | Spring Boot, Java 21, Maven 3.8.7 |
+| Backend    | Spring Boot, Java 17, Maven 3.8.7 |
 | Database   | MySQL 8.0 (Amazon RDS)            |
 | Server     | Ubuntu on AWS EC2 (m7i-flex.large)|
 | Storage    | 25 GiB EBS Volume                 |
