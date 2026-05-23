@@ -40,6 +40,7 @@ public class JwtTokenUtil {
 				.setSubject(user.getId()+","+user.getEmail()+","+user.getUsername()+","+user.getRoles())
 				.setIssuer(jwtIssuer)
 				.setIssuedAt(new Date())
+				.setExpiration(new Date(System.currentTimeMillis() + 86400000))
 //				.setExpiration(new Date(System.currentTimeMillis()+(60*60*1000))) // 1 hr
 				.signWith(key)
 				.compact();		
