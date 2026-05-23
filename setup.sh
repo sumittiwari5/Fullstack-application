@@ -1,3 +1,12 @@
+#!/bin/bash
+
+sudo apt update -y
+
+# Docker
+sudo apt install docker.io -y
+sudo systemctl enable docker
+sudo systemctl start docker
+
 # kubectl
 curl -LO "https://dl.k8s.io/release/$(curl -L -s \
 https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
