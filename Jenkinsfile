@@ -89,17 +89,15 @@ pipeline {
             }
         }
 
-        stage('Service Health Check') {
+        stage('Cluster Health Check') {
             steps {
-                sh """
-                    echo "Checking Backend Health..."
-                    curl -f http://localhost:8080/health || exit 1
-
-                    echo "Checking Frontend Health..."
-                    curl -f http://localhost:3000/ || exit 1
-                """
+                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                    sh """
+                        kubectl get nodes
+                        kubectl get pods -A
+                    """
+                }
             }
-
         }
 
         stage('Deploy to EKS') {
