@@ -70,3 +70,8 @@ sudo systemctl start jenkins
 # Add users to docker group
 sudo usermod -aG docker ubuntu
 sudo usermod -aG docker jenkins
+
+# Docker compose
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.27.0/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
