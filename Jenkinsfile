@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDS   = credentials('dockerhub-creds')
+        DOCKERHUB_CREDS   = credentials(' dockerhub-creds')
         ECR_URI           = '166573185682.dkr.ecr.us-east-1.amazonaws.com'
         DOCKERHUB_USER    = 'sumittiwari05'
         AWS_DEFAULT_REGION = 'us-east-1'
