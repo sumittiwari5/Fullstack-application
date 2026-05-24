@@ -4,9 +4,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDS   = credentials('dockerhub-creds')
-        AWS_ACCESS_KEY_ID     = credentials('aws-creds')
-        AWS_SECRET_ACCESS_KEY = credentials('aws-creds')
-        ECR_URI           = 'YOUR_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com'
+        ECR_URI           = '166573185682.dkr.ecr.us-east-1.amazonaws.com'
         DOCKERHUB_USER    = 'sumittiwari05'
         AWS_DEFAULT_REGION = 'us-east-1'
     }
