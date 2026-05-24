@@ -48,7 +48,7 @@ pipeline {
 
                 stage('Build MySQL') {
                     steps {
-                        dir('Database') {
+                        dir('database') {
                             sh "docker build -t clickncart-mysql:${VERSION} ."
                         }
                     }
@@ -144,16 +144,15 @@ pipeline {
     }
 
     post {
+        always {
+            sh 'docker logout || true'
+        }
         failure {
-            withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
                 sh """
                     kubectl rollout undo deployment/backend  -n clickncart
                     kubectl rollout undo deployment/frontend -n clickncart
                 """
-            }
         }
-        always {
-            sh 'docker logout || true'
-        }
+        
     }
 }
