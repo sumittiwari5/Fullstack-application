@@ -13,7 +13,8 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git credentialsId: 'github-token', url: 'YOUR_GITHUB_REPO'
+                git branch: 'main',
+                    url: 'https://github.com/sumittiwari5/Fullstack-application.git'
             }
         }
 
