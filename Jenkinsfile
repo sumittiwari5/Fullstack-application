@@ -89,15 +89,17 @@ pipeline {
             }
         }
 
-        stage('Cluster Health Check') {
+        stage('Service Health Check') {
             steps {
-                withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
-                    sh """
-                        kubectl get nodes
-                        kubectl get pods -A
-                    """
-                }
+                sh """
+                    echo "Checking Backend Health..."
+                    curl -f http://localhost:8080/health || exit 1
+
+                    echo "Checking Frontend Health..."
+                    curl -f http://localhost:3000/ || exit 1
+                """
             }
+
         }
 
         stage('Deploy to EKS') {
@@ -110,7 +112,6 @@ pipeline {
                         kubectl apply -f k8s/mysql/
                         kubectl apply -f k8s/backend/
                         kubectl apply -f k8s/frontend/
-                        kubectl apply -f k8s/ingress/
 
                         # Override image to the versioned ECR image (this is what updates on each build)
                         kubectl set image deployment/backend  backend=\${ECR_URI}/clickncart-backend:\${VERSION}  -n clickncart
@@ -127,6 +128,7 @@ pipeline {
                     sh """
                         kubectl rollout status deployment/backend  -n clickncart --timeout=120s
                         kubectl rollout status deployment/frontend -n clickncart --timeout=120s
+                        kubectl get svc -n clickncart
                     """
                 }
             }
